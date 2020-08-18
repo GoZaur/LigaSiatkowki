@@ -18,5 +18,6 @@ public class PostgreSQLJDBC {
             System.exit(0);
         }
         System.out.println("Opened database successfully");
+
     }
 }
