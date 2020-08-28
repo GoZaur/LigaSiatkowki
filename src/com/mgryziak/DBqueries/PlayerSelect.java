@@ -11,13 +11,12 @@ public class PlayerSelect {
 
         Statement stmt = null;
         try {
-                /*Class.forName("org.postgresql.Driver");
+            /*Class.forName("org.postgresql.Driver");
                 c = DriverManager                                                       ta deklaracja jest w connection
                         .getConnection("jdbc:postgresql://localhost:5432/kluby",
                                 "postgres", "qwerty2462");*/
             // c.setAutoCommit(false); //zapobieganie automatycznie wygenerowanemu commitowi
             // System.out.println("Opened database successfully"); //wyświetlony komunikat po poprawnej operacji
-
 
 
             stmt = c.createStatement();
@@ -83,7 +82,26 @@ public class PlayerSelect {
                 System.out.println("Kwota wynagrodzenia = " + resultSet.getInt("kwota_wynagrodzenia") + "zł");
                 System.out.println("Liczba zdobytych asów serwisowych = " + resultSet.getInt("Suma wykonanych asów serwisowych"));
             }
-            stmt3.close();
+            //stmt3.close();
+            //resultSet.close();
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
+    }
+
+    public static void Select_Employee_type_by_id_pracownika(Connection c, int id_pracownika) {
+        try {
+            PreparedStatement stmt4 = c.prepareStatement("Select t.stanowisko as \"Stanowisko pracownika\"" +
+                    "From stanowiska_pracownikow t, pracownicy p\n Where p.id_pracownika = ? and t.id = p.stanowisko");
+
+            stmt4.setInt(1, id_pracownika);
+
+            ResultSet resultSet = stmt4.executeQuery();
+            while (resultSet.next()) {
+                System.out.println("Stanowisko pracownika = " + resultSet.getString("Stanowisko pracownika"));
+            }
+            stmt4.close();
             resultSet.close();
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());

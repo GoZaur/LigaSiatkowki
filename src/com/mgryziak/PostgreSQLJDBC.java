@@ -15,14 +15,15 @@ public class PostgreSQLJDBC {
                     .getConnection("jdbc:postgresql://localhost:5432/kluby",
                             "postgres", "qwerty2462");
             PlayerSelect.SelectPlayer_by_ID(c,2);
-            PlayerSelect.SelectData_by_id_pracownika(c,39);
             PlayerSelect.SelectClub_by_ID(c,12);
+            PlayerSelect.SelectData_by_id_pracownika(c,39);
+            PlayerSelect.Select_Employee_type_by_id_pracownika(c,156);
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println(e.getClass().getName()+": "+e.getMessage());
             System.exit(0);
         }
-        System.out.println("Opened database successfully");
+       // System.out.println("Opened database successfully");
 
     }
 }
