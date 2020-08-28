@@ -18,6 +18,8 @@ public class PlayerSelect {
             // c.setAutoCommit(false); //zapobieganie automatycznie wygenerowanemu commitowi
             // System.out.println("Opened database successfully"); //wyświetlony komunikat po poprawnej operacji
 
+
+
             stmt = c.createStatement();
             String zapytanie = "SELECT imie, id_klubu FROM pracownicy WHERE id_pracownika = " + id + "";
             //"SELECT p.imie, k.nazwa_klubu FROM pracownicy p, kluby k where p.id_pracownika = "+id+"" +
