@@ -18,6 +18,7 @@ public class PostgreSQLJDBC {
             PlayerSelect.SelectClub_by_ID(c,12);
             PlayerSelect.SelectData_by_id_pracownika(c,39);
             PlayerSelect.Select_Employee_type_by_id_pracownika(c,156);
+            PlayerSelect.Select_MatchTeams_by_MatchNumber(c,5);
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println(e.getClass().getName()+": "+e.getMessage());

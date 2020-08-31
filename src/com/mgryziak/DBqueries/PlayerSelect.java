@@ -101,7 +101,28 @@ public class PlayerSelect {
             while (resultSet.next()) {
                 System.out.println("Stanowisko pracownika = " + resultSet.getString("Stanowisko pracownika"));
             }
-            stmt4.close();
+            //stmt4.close();
+            //resultSet.close();
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
+    }
+
+    public static void Select_MatchTeams_by_MatchNumber(Connection c, int nr_meczu) {
+        try {
+            PreparedStatement stmt5 = c.prepareStatement("Select k1.nazwa_klubu as gospodarz, k2.nazwa_klubu as gosc\n" +
+                    "                    From mecze, kluby as k1, kluby as k2\n" +
+                    "                    Where mecze.nr_meczu = ? and k2.id_klubu = mecze.gosc and k1.id_klubu = mecze.gospodarz");
+
+            stmt5.setInt(1, nr_meczu);
+
+            ResultSet resultSet = stmt5.executeQuery();
+            while (resultSet.next()) {
+                System.out.println("Nazwy klubów rozgrywajacych spotkanie:\ngospodarz - "
+                        + resultSet.getString("gospodarz" ) + "\ngosc - "+ resultSet.getString("gosc"));
+            }
+            stmt5.close();
             resultSet.close();
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
@@ -109,4 +130,5 @@ public class PlayerSelect {
         }
         System.out.println("Operation done successfully");
     }
+
 }
