@@ -114,5 +114,11 @@ public class PlayerSelect {
         }
         System.out.println("Operation done successfully");
     }
-
+    public static void ResultOfAllQueries(Connection c){
+        SelectPlayer_by_ID(c,2);
+        SelectClub_by_ID(c,12);
+        SelectData_by_id_pracownika(c,39);
+        Select_Employee_type_by_id_pracownika(c,156);
+        Select_MatchTeams_by_MatchNumber(c,5);
+    }
 }
