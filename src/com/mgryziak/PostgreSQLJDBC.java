@@ -1,7 +1,6 @@
 package com.mgryziak;
 
 import com.mgryziak.DBqueries.PlayerInsert;
-import com.mgryziak.DBqueries.PlayerSelect;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,12 +15,14 @@ public class PostgreSQLJDBC {
                     .getConnection("jdbc:postgresql://localhost:5432/kluby",
                             "postgres", "qwerty2462");
             c.setAutoCommit(false);
-            PlayerSelect.SelectPlayer_by_ID(c,2);
-            PlayerSelect.SelectClub_by_ID(c,12);
-            PlayerSelect.SelectData_by_id_pracownika(c,39);
-            PlayerSelect.Select_Employee_type_by_id_pracownika(c,156);
-            PlayerSelect.Select_MatchTeams_by_MatchNumber(c,5);
-            PlayerInsert.AllClubsInsert(c);
+//            PlayerSelect.SelectPlayer_by_ID(c,2);
+//            PlayerSelect.SelectClub_by_ID(c,12);
+//            PlayerSelect.SelectData_by_id_pracownika(c,39);
+//            PlayerSelect.Select_Employee_type_by_id_pracownika(c,156);
+//            PlayerSelect.Select_MatchTeams_by_MatchNumber(c,5);
+            //PlayerInsert.AllClubsInsert(c);
+            PlayerInsert.AllSupport(c);
+            //PlayerInsert.InsertClubsSupport(c,5,11, Date.valueOf("2019-10-23"),45350);
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println(e.getClass().getName()+": "+e.getMessage());
