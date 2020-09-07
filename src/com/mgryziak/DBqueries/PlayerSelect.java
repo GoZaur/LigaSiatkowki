@@ -11,29 +11,13 @@ public class PlayerSelect {
 
         Statement stmt = null;
         try {
-            /*Class.forName("org.postgresql.Driver");
-                c = DriverManager                                                       ta deklaracja jest w connection
-                        .getConnection("jdbc:postgresql://localhost:5432/kluby",
-                                "postgres", "qwerty2462");*/
-            // c.setAutoCommit(false); //zapobieganie automatycznie wygenerowanemu commitowi
-            // System.out.println("Opened database successfully"); //wyświetlony komunikat po poprawnej operacji
-
-
             stmt = c.createStatement();
             String zapytanie = "SELECT imie, id_klubu FROM pracownicy WHERE id_pracownika = " + id + "";
-            //"SELECT p.imie, k.nazwa_klubu FROM pracownicy p, kluby k where p.id_pracownika = "+id+"" +
-            //"AND k.id_klubu = "+id_klubu+";";  //String zapytanie - utworzona zmienna =
-            // zapytanie bazodanowe i dołączenie zmiennej
             ResultSet rs = stmt.executeQuery(zapytanie);
-            //ResultSet rs = stmt.executeQuery( "SELECT * FROM kluby;" );
-            while (rs.next()) {
-                // int id_klubu = rs.getInt("id_klubu");
-                String imie_zawodniczki = rs.getString("imie"); //nazwa kolumny w bazie danch
-                //       int id_klubu_zawodniczki = rs.getInt("id_klubu");
 
-                //System.out.println("id_klubu = " + id_klubu);
+            while (rs.next()) {
+                String imie_zawodniczki = rs.getString("imie"); //nazwa kolumny w bazie danch
                 System.out.println("Imię zawodniczki = " + imie_zawodniczki);
-                //       System.out.println("id klubu = "+id_klubu_zawodniczki);
                 System.out.println();
             }
             //rs.close();
@@ -112,8 +96,8 @@ public class PlayerSelect {
     public static void Select_MatchTeams_by_MatchNumber(Connection c, int nr_meczu) {
         try {
             PreparedStatement stmt5 = c.prepareStatement("Select k1.nazwa_klubu as gospodarz, k2.nazwa_klubu as gosc\n" +
-                    "                    From mecze, kluby as k1, kluby as k2\n" +
-                    "                    Where mecze.nr_meczu = ? and k2.id_klubu = mecze.gosc and k1.id_klubu = mecze.gospodarz");
+                    "From mecze, kluby as k1, kluby as k2\n" +
+                    "Where mecze.nr_meczu = ? and k2.id_klubu = mecze.gosc and k1.id_klubu = mecze.gospodarz");
 
             stmt5.setInt(1, nr_meczu);
 
@@ -122,8 +106,8 @@ public class PlayerSelect {
                 System.out.println("Nazwy klubów rozgrywajacych spotkanie:\ngospodarz - "
                         + resultSet.getString("gospodarz" ) + "\ngosc - "+ resultSet.getString("gosc"));
             }
-            stmt5.close();
-            resultSet.close();
+           // stmt5.close();
+            //resultSet.close();
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
