@@ -20,9 +20,7 @@ public class PlayerSelect {
                 System.out.println("Imię zawodniczki = " + imie_zawodniczki);
                 System.out.println();
             }
-            //rs.close();
-            //stmt.close();
-            //c.close();
+
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
@@ -35,14 +33,12 @@ public class PlayerSelect {
             PreparedStatement rs2 = c.prepareStatement("SELECT nazwa_klubu FROM kluby WHERE id_klubu =?");
             rs2.setInt(1, id_klubu);
 
-            ResultSet resultSet = rs2.executeQuery();  //(sql)
+            ResultSet resultSet = rs2.executeQuery();
             while (resultSet.next()) {
                 System.out.println("Nazwa klubu = " + resultSet.getString("nazwa_klubu"));
                 System.out.println();
-                //rs2.close();
-                //resultSet.close();
-                //c.close();
             }
+
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
@@ -66,8 +62,7 @@ public class PlayerSelect {
                 System.out.println("Kwota wynagrodzenia = " + resultSet.getInt("kwota_wynagrodzenia") + "zł");
                 System.out.println("Liczba zdobytych asów serwisowych = " + resultSet.getInt("Suma wykonanych asów serwisowych"));
             }
-            //stmt3.close();
-            //resultSet.close();
+
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
@@ -85,8 +80,7 @@ public class PlayerSelect {
             while (resultSet.next()) {
                 System.out.println("Stanowisko pracownika = " + resultSet.getString("Stanowisko pracownika"));
             }
-            //stmt4.close();
-            //resultSet.close();
+
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
@@ -114,5 +108,11 @@ public class PlayerSelect {
         }
         System.out.println("Operation done successfully");
     }
-
+    public static void ResultOfAllSelect(Connection c){
+        SelectPlayer_by_ID(c,2);
+        SelectClub_by_ID(c,12);
+        SelectData_by_id_pracownika(c,39);
+        Select_Employee_type_by_id_pracownika(c,156);
+        Select_MatchTeams_by_MatchNumber(c,5);
+    }
 }
